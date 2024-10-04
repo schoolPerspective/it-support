@@ -3,9 +3,7 @@
 username=user
 mkdir /home/$username/Scripts
 
-https://github.com/schoolPerspective/it-support/raw/main/Скрипты/Служебные/Robotics/Scratch.sh -P /home/$username/Scripts/
-
-wget https://github.com/schoolPerspective/it-support/raw/main/Скрипты/Служебные/Lenovo/ScreenMirroring/projector.png -P /home/$username/Scripts/
+wget https://github.com/schoolPerspective/it-support/raw/main/Скрипты/Служебные/Lenovo/projector.png -P /home/$username/Scripts/
 wget https://github.com/schoolPerspective/it-support/raw/main/Скрипты/Служебные/Lenovo/ScreenMode.sh -P /home/$username/Scripts/
 chmod +x /home/$username/Scripts/ScreenMode.sh
 
