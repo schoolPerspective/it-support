@@ -4,6 +4,7 @@
 username=olimp
 password=1234
 sudo_username="$(who am i | awk '{print $1}')"
+PUBLIC_KEY="<ссылка возвращаемая кнопкой 'Поделиться' яндекс.диска>"
 
 
 function installPackage {
@@ -26,7 +27,7 @@ sudo -v
 if [ $? -eq 0 ]; then
   # Установка ПО
   echo -e "\n\033[33m Установка ПО \n\033[37m"
-  for var in wing-101 pycharm-community vscode gcc-c++ gdb codeblocks pascalabcnet yandex-browser java-17-openjdk-devel dotnet dotnet-sdk-6.0
+  for var in wing-101 pycharm-community vscode gcc-c++ gdb codeblocks pascalabcnet yandex-browser java-17-openjdk-devel dotnet dotnet-sdk-6.0 jq
   do
     installPackage $var
   done
@@ -52,10 +53,23 @@ if [ $? -eq 0 ]; then
   done
 
   echo -e "\033[33m Установка расширений VS-Code для пользователя $username \n\033[37m"
-  sudo code --install-extension ms-vscode.cpptools --extensions-dir /home/$username/.vscode/extensions --user-data-dir /home/$username/.vscode
-  sudo code --install-extension ms-python.python --extensions-dir /home/$username/.vscode/extensions --user-data-dir /home/$username/.vscode
-  sudo code --install-extension ms-dotnettools.csharp --extensions-dir /home/$username/.vscode/extensions --user-data-dir /home/$username/.vscode
-  sudo code --install-extension vscjava.vscode-java-pack --extensions-dir /home/$username/.vscode/extensions --user-data-dir /home/$username/.vscode
+
+  BASE_URL="https://cloud-api.yandex.net/v1/disk/public/resources/download"
+  # Получаем ссылку для скачивания
+  DOWNLOAD_URL=$(curl -s -X GET "$BASE_URL?public_key=$PUBLIC_KEY" | jq -r '.href')
+  if [ -z "$DOWNLOAD_URL" ]; then
+    echo "Не удалось получить ссылку для скачивания."
+    exit 1
+  fi
+
+  sudo curl -L -o "/home/$username/vs-code-addons.tar.gz" "$DOWNLOAD_URL"
+  sudo tar -C /home/$username/ -xvzf /home/$username/vs-code-addons.tar.gz
+  sudo rm -r /home/$username/vs-code-addons.tar.gz
+  if [ $? -ne 0 ]; then
+    echo "Не удается загрузить архив с Яндекс.Диск!"
+    exit 1
+  fi
+
 
   # Настройка ограничений в сети
   echo -e "\n\033[33m Конфигурация ограничений интернета \n\033[37m"
