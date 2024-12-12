@@ -54,8 +54,8 @@ if [ $? -eq 0 ]; then
   echo -e "\033[33m Установка расширений VS-Code для пользователя $username \n\033[37m"
   sudo code --install-extension ms-vscode.cpptools --extensions-dir /home/$username/.vscode/extensions --user-data-dir /home/$username/.vscode
   sudo code --install-extension ms-python.python --extensions-dir /home/$username/.vscode/extensions --user-data-dir /home/$username/.vscode
-  sudo code --install-extension ms-dotnettools.csharp --extensions-dir /home/$username/.vscode/extensions --user-data-dir /home/$username/.vscode
-  sudo code --install-extension vscjava.vscode-java-pack --extensions-dir /home/$username/.vscode/extensions --user-data-dir /home/$username/.vscode
+  #sudo code --install-extension ms-dotnettools.csharp --extensions-dir /home/$username/.vscode/extensions --user-data-dir /home/$username/.vscode
+  #sudo code --install-extension vscjava.vscode-java-pack --extensions-dir /home/$username/.vscode/extensions --user-data-dir /home/$username/.vscode
 
   # Настройка ограничений в сети
   echo -e "\n\033[33m Конфигурация ограничений интернета \n\033[37m"
