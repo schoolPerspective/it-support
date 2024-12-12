@@ -3,6 +3,8 @@
 # Задайте имя и пароль для пользователя, который будет использоваться для проведения олимпиад
 username=olimp
 password=1234
+sudo_username="$(who am i | awk '{print $1}')"
+
 
 function installPackage {
 # Функция проверки наличия и установки пакетов
@@ -62,7 +64,10 @@ if [ $? -eq 0 ]; then
 
   echo -e "\033[0m\n\033[0m\033[31m !!! - Внимание - !!!\n\033[37m"
   echo "Скрипт завершил свою работу, для применения настроек блокировки интернет источников воспользуйтесь командой:"
-  echo -e "\033[47m\033[30m sudo systemctl enable --now nftables \033[40m\033[37m"
+  echo -e "\033[47m\033[30m фильтр_вкл \033[40m\033[37m"
+
+  echo "alias фильтр_вкл='sudo systemctl enable --now nftables'" >> "/home/$sudo_username/.bashrc"
+  echo "alias фильтр_откл='sudo systemctl disable --now nftables'" >> "/home/$sudo_username/.bashrc"
 
 else
   echo -e "\033[0m\n\033[0m\033[31m !!! - Внимание - !!!\n\033[37m"
