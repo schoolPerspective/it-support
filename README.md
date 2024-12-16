@@ -23,6 +23,9 @@
 - [Lenovo C260](</Инструкции/моноблок-lenovo-c260.md>)
 - [Ancomp A15-501](</Инструкции/ancomp-A15-501.md>)
 
+## Полезные программы
+- [Imaginator](</Программы/README.md>)
+
 ## Полезные информационные ресуры
 - [IT-Вшколе](https://it-help-school.ru/)  
 - [DNO-IT](https://wiki.dno-it.ru/)  
