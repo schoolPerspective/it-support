@@ -11,9 +11,9 @@ sudo dnf install python3-pip -y
 python3-pip install pyopenssl --upgrade
 sudo dnf install scratch-desktop -y
 
-sudo mkdir /home/$username/Scripts
-sudo wget -O https://github.com/schoolPerspective/it-support/raw/main/Скрипты/Служебные/Robotics/Scratch.sh -P /home/$username/Scripts/
-sudo wget -O https://github.com/schoolPerspective/it-support/raw/main/Скрипты/Служебные/Robotics/Scratch.png -P /home/$username/Scripts/
+sudo mkdir -p /home/$username/Scripts
+sudo wget -O /home/$username/Scripts/Scratch.sh https://github.com/schoolPerspective/it-support/raw/main/Скрипты/Служебные/Robotics/Scratch.sh
+sudo wget -O /home/$username/Scripts/Scratch.png https://github.com/schoolPerspective/it-support/raw/main/Скрипты/Служебные/Robotics/Scratch.png
 sudo chmod +x /home/$username/Scripts/Scratch.sh
 
 sudo touch /home/$username/Рабочий\ стол/Scratch.desktop
