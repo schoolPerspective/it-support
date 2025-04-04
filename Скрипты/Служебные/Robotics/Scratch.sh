@@ -1,8 +1,6 @@
 #!/usr/bin/bash
 
-killall scratch_link
-sleep 1
+pkill -f scratch_link && sleep 1
 bluepy_helper_cap
-scratch_link &
+scratch_link -r 2 -s 8 &
 scratch-desktop
-
