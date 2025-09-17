@@ -4,6 +4,12 @@
 # Подставить вместо user имя пользователя, для которого будет выполнена настройка
 username=user
 
+sudo -v
+if [ $? -ne 0 ]; then
+  echo -e "\033[0m\n\033[0m\033[31m !!! - Внимание - !!!\n\033[37m"
+  echo "Используйте учетную запись с правами администратора!"
+fi
+
 # Scratch+Link
 sudo dnf install libcap-utils -y
 sudo dnf install python3-pyscrlink -y
@@ -34,5 +40,5 @@ sudo dnf install trik-studio -y
 #gpasswd -a $username mindstormusers - Не актульно в МОС12
 
 # Spike
-gpasswd -a $username dialout
-reboot
+sudo gpasswd -a $username dialout
+sudo reboot
